@@ -100,5 +100,14 @@ app.post("/delete/:id", async (req, res) => {
     res.render('pages/demo');
   });  
 
+  app.get('/demo', async function(req, res) {
+
+    var blog_posts = await prisma.post.findMany();
+  
+    console.log(blog_posts);
+  
+    await res.render('pages/demo', { blog_posts: blog_posts });
+  });
+
 // Tells the app which port to run on
 app.listen(8080);
